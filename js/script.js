@@ -126,6 +126,7 @@ form.addEventListener("submit", (e) => {
     isValidCvv(cvv);
   console.log("isValid", isValid);
   if (isValid) {
+    document.form.submit();
   } else {
   }
 });
