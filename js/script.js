@@ -26,8 +26,8 @@ const design = document.getElementById("design");
 
 design.addEventListener("change", (e) => {
   color.disabled = false;
-  target = e.target.value;
-  if (target === "js puns") {
+  shirtDesign = e.target.value;
+  if (shirtDesign === "js puns") {
     color[1].hidden = false;
     color[2].hidden = false;
     color[3].hidden = false;
@@ -42,4 +42,21 @@ design.addEventListener("change", (e) => {
     color[5].hidden = false;
     color[6].hidden = false;
   }
+});
+
+const activities = document.getElementById("activities");
+const activitiesCost = document.getElementById("activities-cost");
+const checkbox = document.querySelectorAll('input[type="checkbox"]');
+let totalCost = 0;
+
+activities.addEventListener("change", (e) => {
+  const clickedActivity = e.target;
+  let clickedPrice = clickedActivity.getAttribute("data-cost");
+  let price = parseInt(clickedPrice);
+  if (clickedActivity.checked) {
+    totalCost += price;
+  } else {
+    totalCost -= price;
+  }
+  activitiesCost.textContent = `Total: $${totalCost}`;
 });
