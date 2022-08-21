@@ -44,6 +44,7 @@ design.addEventListener("change", (e) => {
   }
 });
 
+//calcuates total price based on which courses are added or removed
 const activities = document.getElementById("activities");
 const activitiesCost = document.getElementById("activities-cost");
 const checkbox = document.querySelectorAll('input[type="checkbox"]');
@@ -61,12 +62,14 @@ activities.addEventListener("change", (e) => {
   activitiesCost.textContent = `Total: $${totalCost}`;
 });
 
+//displays associated payment information based on payment type selected from dropdown
 const payment = document.getElementById("payment");
 const creditCard = document.querySelector("[value=credit-card]");
 const creditCardBox = document.getElementById("credit-card");
 const payPalBox = document.getElementById("paypal");
 const bitCoinBox = document.getElementById("bitcoin");
 
+//sets default payment type on load
 creditCard.selected = true;
 
 payment.addEventListener("change", (e) => {
@@ -86,14 +89,30 @@ payment.addEventListener("change", (e) => {
   }
 });
 
-/*const otherJobRole = document.getElementById("other-job-role");
-const title = document.getElementById("title");
+//form validation
+const name = document.getElementById("name");
+const emailAddress = document.getElementById("email");
+const cardNumber = document.getElementById("cc-num");
+const zipCode = document.getElementById("zip");
+const cvv = document.getElementById("cvv");
 
-title.addEventListener("change", (e) => {
-  const job = e.target.value;
-  if (job === "other") {
-    otherJobRole.style.display = "block";
-  } else {
-    otherJobRole.style.display = "none";
-  }
-});*/
+function isValidName(name) {
+  return /^[a-z]+$/.test(name);
+}
+
+function isValidEmail(email) {
+  return /^[^@]+@[^@.]+\.[a-z]+$/i.test(email);
+}
+
+function isValidCreditCardNumber(cardNumber) {
+  return /^\d{13, 16}$/.test(cardNumber);
+}
+
+function isValidZip(zipCode) {
+  return /^\d{5}$/.test(zipCode);
+}
+function isValidCvv(cvv) {
+  return /^\d{3}$/.test(cvv);
+}
+
+form.addEventListener("submit", (e) => {});
