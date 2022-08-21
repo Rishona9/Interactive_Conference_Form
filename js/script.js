@@ -60,3 +60,40 @@ activities.addEventListener("change", (e) => {
   }
   activitiesCost.textContent = `Total: $${totalCost}`;
 });
+
+const payment = document.getElementById("payment");
+const creditCard = document.querySelector("[value=credit-card]");
+const creditCardBox = document.getElementById("credit-card");
+const payPalBox = document.getElementById("paypal");
+const bitCoinBox = document.getElementById("bitcoin");
+
+creditCard.selected = true;
+
+payment.addEventListener("change", (e) => {
+  const paymentType = e.target.value;
+  if (paymentType === "paypal") {
+    payPalBox.style.display = "";
+    creditCardBox.style.display = "none";
+    bitCoinBox.style.display = "none";
+  } else if (paymentType === "bitcoin") {
+    payPalBox.style.display = "none";
+    creditCardBox.style.display = "none";
+    bitCoinBox.style.display = "";
+  } else {
+    payPalBox.style.display = "none";
+    creditCardBox.style.display = "";
+    bitCoinBox.style.display = "none";
+  }
+});
+
+/*const otherJobRole = document.getElementById("other-job-role");
+const title = document.getElementById("title");
+
+title.addEventListener("change", (e) => {
+  const job = e.target.value;
+  if (job === "other") {
+    otherJobRole.style.display = "block";
+  } else {
+    otherJobRole.style.display = "none";
+  }
+});*/
