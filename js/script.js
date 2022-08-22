@@ -126,5 +126,6 @@ form.addEventListener("submit", (e) => {
   if (isValid) {
     document.form.submit();
   } else {
+    for (i = 0; i < isValid.length; i++) {}
   }
 });
