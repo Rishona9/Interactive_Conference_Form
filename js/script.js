@@ -89,7 +89,7 @@ payment.addEventListener("change", (e) => {
   }
 });
 
-//form validation
+//form validation - validates each required field and displays error message for any invalid fields
 const form = document.querySelector("form");
 const nameInput = document.getElementById("name");
 const email = document.getElementById("email");
