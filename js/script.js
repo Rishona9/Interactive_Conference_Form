@@ -96,7 +96,6 @@ const email = document.getElementById("email");
 const cardNumber = document.getElementById("cc-num");
 const zipCode = document.getElementById("zip");
 const cvv = document.getElementById("cvv");
-const requiredFields = document.querySelectorAll(".error-border");
 
 function isValidName(nameInput) {
   return /^[a-z]+$/.test(nameInput);
