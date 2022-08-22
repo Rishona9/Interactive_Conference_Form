@@ -91,14 +91,15 @@ payment.addEventListener("change", (e) => {
 
 //form validation
 const form = document.querySelector("form");
-const fullName = document.getElementById("name");
+const nameInput = document.getElementById("name");
 const email = document.getElementById("email");
 const cardNumber = document.getElementById("cc-num");
 const zipCode = document.getElementById("zip");
 const cvv = document.getElementById("cvv");
+const requiredFields = document.querySelectorAll(".error-border");
 
-function isValidName(fullName) {
-  return /^[a-z]+$/.test(fullName);
+function isValidName(nameInput) {
+  return /^[a-z]+$/.test(nameInput);
 }
 
 function isValidEmail(email) {
@@ -117,14 +118,12 @@ function isValidCvv(cvv) {
 }
 
 form.addEventListener("submit", (e) => {
-  e.preventDefault();
   const isValid =
-    isValidName(fullName) &&
+    isValidName(nameInput) &&
     isValidEmail(email) &&
     isValidCreditCardNumber(cardNumber) &&
     isValidZip(zipCode) &&
     isValidCvv(cvv);
-  console.log("isValid", isValid);
   if (isValid) {
     document.form.submit();
   } else {
