@@ -96,6 +96,7 @@ const email = document.getElementById("email");
 const cardNumber = document.getElementById("cc-num");
 const zipCode = document.getElementById("zip");
 const cvv = document.getElementById("cvv");
+const requiredFields = document.querySelectorAll(".error-border");
 
 function isValidName(nameInput) {
   return /^[a-z]+$/.test(nameInput);
@@ -117,13 +118,14 @@ function isValidCvv(cvv) {
 }
 
 form.addEventListener("submit", (e) => {
-  const requiredFields = document.querySelectorAll(".error-border");
+  e.preventDefault();
   const isValid =
     isValidName(nameInput) &&
     isValidEmail(email) &&
     isValidCreditCardNumber(cardNumber) &&
     isValidZip(zipCode) &&
     isValidCvv(cvv);
+
   if (isValid) {
     document.form.submit();
   } else {
