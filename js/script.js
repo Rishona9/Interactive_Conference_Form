@@ -117,6 +117,7 @@ function isValidCvv(cvv) {
 }
 
 form.addEventListener("submit", (e) => {
+  const requiredFields = document.querySelectorAll(".error-border");
   const isValid =
     isValidName(nameInput) &&
     isValidEmail(email) &&
@@ -126,6 +127,6 @@ form.addEventListener("submit", (e) => {
   if (isValid) {
     document.form.submit();
   } else {
-    for (i = 0; i < isValid.length; i++) {}
+    for (i = 0; i < requiredFields.length; i++) {}
   }
 });
