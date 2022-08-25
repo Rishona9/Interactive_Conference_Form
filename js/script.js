@@ -94,78 +94,63 @@ const form = document.querySelector("form");
 const nameInput = document.getElementById("name");
 const email = document.getElementById("email");
 const cardNumber = document.getElementById("cc-num");
-const zipCode = document.getElementById("zip");
+const zip = document.getElementById("zip");
 const cvv = document.getElementById("cvv");
-
 
 function isValidName(nameInput) {
   const nameIsValid = /^[a-z]+$/.test(nameInput);
-  if (nameIsValid){
-    //display the valid class
-    //hide hint
+  if (nameIsValid) {
+    nameInput.classList.add("valid");
+    nameInput.style.display = "none";
   } else {
-    //display the not-valid class
-    //display hint
+    nameInput.classList.add("not-valid");
+    nameInput.style.display = "block";
   }
 }
 
 function isValidEmail(email) {
   const emailIsValid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(email);
-  if (emailIsValid){
-    //display the valid class
-    //hide hint
+  if (emailIsValid) {
+    email.classList.add("valid");
+    email.style.display = "none";
   } else {
-    //display the not-valid class
-    //display hint
+    email.classList.add("not-valid");
+    email.style.display = "block";
   }
 }
 
 function isValidCreditCardNumber(cardNumber) {
   const creditCardIsValid = /^\d{13, 16}$/.test(cardNumber);
-  if (creditCardIsValid){
-    //display the valid class
-    //hide hint
+  if (creditCardIsValid) {
+    cardNumber.classList.add("valid");
+    cardNumber.style.display = "none";
   } else {
-    //display the not-valid class
-    //display hint
+    cardNumber.classList.add("not-valid");
+    cardNumber.style.display = "block";
   }
 }
 
-function isValidZip(zipCode) {
+function isValidZip(zip) {
   const zipIsValid = /^\d{5}$/.test(zipCode);
-  if (zipIsValid){
-    //display the valid class
-    //hide hint
+  if (zipIsValid) {
+    zip.classList.add("valid");
+    zip.style.display = "none";
   } else {
-    //display the not-valid class
-    //display hint
+    zip.classList.add("not-valid");
+    zip.style.display = "block";
   }
 }
 function isValidCvv(cvv) {
   const cvvIsValid = /^\d{3}$/.test(cvv);
-  if (cvvIsValid){
-    //display the valid class
-    //hide hint
+  if (cvvIsValid) {
+    cvv.classList.add("valid");
+    cvv.style.display = "none";
   } else {
-    //display the not-valid class
-    //display hint
+    cvv.classList.add("not-valid");
+    cvv.style.display = "block";
   }
 }
 
-
-
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const isValid =
-    isValidName(nameInput) &&
-    isValidEmail(email) &&
-    isValidCreditCardNumber(cardNumber) &&
-    isValidZip(zipCode) &&
-    isValidCvv(cvv);
-
-  if (isValid) {
-    document.form.submit();
-  } else {
-    for (i = 0; i < isValid.length; i++) {}
-  }
 });
