@@ -96,26 +96,63 @@ const email = document.getElementById("email");
 const cardNumber = document.getElementById("cc-num");
 const zipCode = document.getElementById("zip");
 const cvv = document.getElementById("cvv");
-const requiredFields = document.querySelectorAll(".error-border");
+
 
 function isValidName(nameInput) {
-  return /^[a-z]+$/.test(nameInput);
+  const nameIsValid = /^[a-z]+$/.test(nameInput);
+  if (nameIsValid){
+    //display the valid class
+    //hide hint
+  } else {
+    //display the not-valid class
+    //display hint
+  }
 }
 
 function isValidEmail(email) {
-  return /^[^@]+@[^@.]+\.[a-z]+$/i.test(email);
+  const emailIsValid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(email);
+  if (emailIsValid){
+    //display the valid class
+    //hide hint
+  } else {
+    //display the not-valid class
+    //display hint
+  }
 }
 
 function isValidCreditCardNumber(cardNumber) {
-  return /^\d{13, 16}$/.test(cardNumber);
+  const creditCardIsValid = /^\d{13, 16}$/.test(cardNumber);
+  if (creditCardIsValid){
+    //display the valid class
+    //hide hint
+  } else {
+    //display the not-valid class
+    //display hint
+  }
 }
 
 function isValidZip(zipCode) {
-  return /^\d{5}$/.test(zipCode);
+  const zipIsValid = /^\d{5}$/.test(zipCode);
+  if (zipIsValid){
+    //display the valid class
+    //hide hint
+  } else {
+    //display the not-valid class
+    //display hint
+  }
 }
 function isValidCvv(cvv) {
-  return /^\d{3}$/.test(cvv);
+  const cvvIsValid = /^\d{3}$/.test(cvv);
+  if (cvvIsValid){
+    //display the valid class
+    //hide hint
+  } else {
+    //display the not-valid class
+    //display hint
+  }
 }
+
+
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
