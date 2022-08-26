@@ -34,7 +34,7 @@ design.addEventListener("change", (e) => {
 
   if (design.value === "js puns") {
     if (currentShirtTheme !== "js puns") {
-      color.firstElementChild.innerHTML = "Select a js pun theme";
+      color.firstElementChild.innerHTML = "Select a JS Puns theme";
       color.firstElementChild.setAttribute("selected", "selected");
     }
 
@@ -49,7 +49,7 @@ design.addEventListener("change", (e) => {
     });
   } else if (design.value === "heart js") {
     if (currentShirtTheme !== "heart js") {
-      color.firstElementChild.innerHTML = "Select a heart js theme";
+      color.firstElementChild.innerHTML = "Select an I ♥ JS theme";
       color.firstElementChild.setAttribute("selected", "selected");
     }
 
