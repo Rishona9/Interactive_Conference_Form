@@ -17,30 +17,55 @@ title.addEventListener("change", (e) => {
     otherJobRole.style.display = "none";
   }
 });
-//disables shirt colors until design is selected
 
-//color dropdown menu displays only the color options associated with the selected design
 const design = document.getElementById("design");
 const color = document.getElementById("color");
-const colorOption = color.children;
+const colorOption = document.querySelectorAll("option[data-theme]");
 
 //disable color field
 color.disabled = true;
 
+let currentShirtTheme = null;
+
 //create an eventListener for shirt design
+//color dropdown menu displays only the color options associated with the selected design
 design.addEventListener("change", (e) => {
   color.disabled = false;
-  for (let i = 0; i < colorOption.length; i++) {
-    const selected = e.target.value;
-    let dataTheme = colorOption[i].getAttribute("data-theme");
-    if (dataTheme === selected) {
-      colorOption[i].hidden = false;
-      selected.hidden = true;
-    } else {
-      colorOption[i].hidden = true;
-      selected.hidden = false;
+
+  if (design.value === "js puns") {
+    if (currentShirtTheme !== "js puns") {
+      color.firstElementChild.innerHTML = "Select a js pun theme";
+      color.firstElementChild.setAttribute("selected", "selected");
     }
+
+    colorOption.forEach((option) => {
+      if (option.getAttribute("data-theme") === "js puns") {
+        option.removeAttribute("hidden");
+      } else if (option.getAttribute("data-theme") === "heart js") {
+        option.setAttribute("hidden", "hidden");
+      }
+
+      currentShirtTheme = "js puns";
+    });
+  } else if (design.value === "heart js") {
+    if (currentShirtTheme !== "heart js") {
+      color.firstElementChild.innerHTML = "Select a heart js theme";
+      color.firstElementChild.setAttribute("selected", "selected");
+    }
+
+    colorOption.forEach((option) => {
+      if (option.getAttribute("data-theme") === "heart js") {
+        option.removeAttribute("hidden");
+      } else if (option.getAttribute("data-theme") === "js puns") {
+        option.setAttribute("hidden", "hidden");
+      }
+    });
+    currentShirtTheme = "heart js";
   }
+});
+
+color.addEventListener("change", () => {
+  color.firstElementChild.removeAttribute("selected");
 });
 
 //calcuates total price based on which courses are added or removed
@@ -98,7 +123,7 @@ const cvv = document.getElementById("cvv");
 const activitiesBox = document.getElementById("activities-box");
 
 function isValidName(nameValue) {
-  const nameIsValid = /^[a-z]+$/.test(nameValue);
+  const nameIsValid = /^[a-z]+[\s]?[a-z]+?$/i.test(nameValue);
   if (nameIsValid) {
     nameValue.parentElement.classList.remove("not-valid");
     nameValue.parentElement.classList.add("valid");
