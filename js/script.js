@@ -125,14 +125,14 @@ const activitiesBox = document.getElementById("activities-box");
 function isValidName(nameValue) {
   const nameIsValid = /^[a-z]+[\s]?[a-z]+?$/i.test(nameValue);
   if (nameIsValid) {
-    nameValue.parentElement.classList.remove("not-valid");
-    nameValue.parentElement.classList.add("valid");
-    nameValue.parentElement.lastElementChild.style.display = "none";
+    nameInput.parentElement.classList.remove("not-valid");
+    nameInput.parentElement.classList.add("valid");
+    nameInput.parentElement.lastElementChild.style.display = "none";
     return true;
   } else {
-    nameValue.parentElement.classList.remove("valid");
-    nameValue.parentElement.classList.add("not-valid");
-    nameValue.parentElement.lastElementChild.style.display = "block";
+    nameInput.parentElement.classList.remove("valid");
+    nameInput.parentElement.classList.add("not-valid");
+    nameInput.parentElement.lastElementChild.style.display = "block";
     return false;
   }
 }
@@ -213,11 +213,20 @@ for (let i = 0; i < checkboxes.length; i++) {
     checkboxes[i].parentElement.classList.remove("focus");
   });
 }
+
 //checks all form fields are valid so form can be submitted
 form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
   const userName = nameInput.value;
+
   const isNameValid = isValidName(userName);
+
+  if (totalCost === 0) {
+    // add not valid classes
+  }
+
   if (!isNameValid) {
-    e.prevent.default;
+    console.log("the name was invalid!!!");
   }
 });
