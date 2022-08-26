@@ -100,59 +100,68 @@ const cvv = document.getElementById("cvv");
 function isValidName(nameInput) {
   const nameIsValid = /^[a-z]+$/.test(nameInput);
   if (nameIsValid) {
-    nameInput.classList.add("valid");
-    nameInput.style.display = "none";
+    nameInput.parentElement.classList.remove("not-valid");
+    nameInput.parentElement.classList.add("valid");
+    nameInput.parentElement.style.display = "none";
   } else {
-    nameInput.classList.add("not-valid");
-    nameInput.style.display = "block";
+    nameInput.parentElement.classList.remove("valid");
+    nameInput.parentElement.classList.add("not-valid");
+    nameInput.parentElement.style.display = "block";
   }
 }
 
 function isValidEmail(email) {
   const emailIsValid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(email);
   if (emailIsValid) {
-    email.classList.add("valid");
-    email.style.display = "none";
+    email.parentElement.classList.remove("not-valid");
+    email.parentElement.classList.add("valid");
+    email.parentElement.style.display = "none";
   } else {
-    email.classList.add("not-valid");
-    email.style.display = "block";
+    email.parentElement.classList.remove("valid");
+    email.parentElement.classList.add("not-valid");
+    email.parentElement.style.display = "block";
   }
 }
 
 function isValidCreditCardNumber(cardNumber) {
   const creditCardIsValid = /^\d{13, 16}$/.test(cardNumber);
   if (creditCardIsValid) {
-    cardNumber.classList.add("valid");
-    cardNumber.style.display = "none";
+    cardNumber.parentElement.classList.remove("not-valid");
+    cardNumber.parentElement.classList.add("valid");
+    cardNumber.parentElement.style.display = "none";
   } else {
-    cardNumber.classList.add("not-valid");
-    cardNumber.style.display = "block";
+    cardNumber.parentElement.classList.remove("valid");
+    cardNumber.parentElement.classList.add("not-valid");
+    cardNumber.parentElement.style.display = "block";
   }
 }
 
 function isValidZip(zip) {
   const zipIsValid = /^\d{5}$/.test(zipCode);
   if (zipIsValid) {
-    zip.classList.add("valid");
-    zip.style.display = "none";
+    zip.parentElement.classList.remove("not-valid");
+    zip.parentElement.classList.add("valid");
+    zip.parentElement.style.display = "none";
   } else {
-    zip.classList.add("not-valid");
-    zip.style.display = "block";
+    zip.parentElement.classList.remove("valid");
+    zip.parentElement.classList.add("not-valid");
+    zip.parentElement.style.display = "block";
   }
 }
 function isValidCvv(cvv) {
   const cvvIsValid = /^\d{3}$/.test(cvv);
   if (cvvIsValid) {
-    cvv.classList.add("valid");
-    cvv.style.display = "none";
+    cvv.parentElement.classList.remove("not-valid");
+    cvv.parentElement.classList.add("valid");
+    cvv.parentElement.style.display = "none";
   } else {
-    cvv.classList.add("not-valid");
-    cvv.style.display = "block";
+    cvv.parentElement.classList.remove("valid");
+    cvv.parentElement.classList.add("not-valid");
+    cvv.parentElement.style.display = "block";
   }
 }
 
 form.addEventListener("submit", (e) => {
-  e.preventDefault();
   if (
     isValidName(nameInput) &&
     isValidEmail(email) &&
