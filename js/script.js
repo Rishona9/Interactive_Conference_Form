@@ -162,13 +162,12 @@ function isValidCvv(cvv) {
 }
 
 form.addEventListener("submit", (e) => {
-  if (
-    isValidName(nameInput) &&
-    isValidEmail(email) &&
-    isValidCreditCardNumber(cardNumber) &&
-    isValidZip(zip) &&
-    isValidCvv(cvv)
-  ) {
+  if ((allValid = true)) {
+    allValid += isValidName();
+    allValid += isValidEmail();
+    allValid += isValidCreditCardNumber();
+    allValid += isValidZip();
+    allValid += isValidCvv();
   } else {
     e.preventDefault();
   }
