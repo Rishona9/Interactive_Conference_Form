@@ -96,17 +96,18 @@ const email = document.getElementById("email");
 const cardNumber = document.getElementById("cc-num");
 const zip = document.getElementById("zip");
 const cvv = document.getElementById("cvv");
+const activitiesBox = document.getElementById("activities-box");
 
 function isValidName(nameInput) {
   const nameIsValid = /^[a-z]+$/.test(nameInput);
   if (nameIsValid) {
     nameInput.parentElement.classList.remove("not-valid");
     nameInput.parentElement.classList.add("valid");
-    nameInput.parentElement.style.display = "none";
+    nameInput.parentElement.lastElementChild.style.display = "none";
   } else {
     nameInput.parentElement.classList.remove("valid");
     nameInput.parentElement.classList.add("not-valid");
-    nameInput.parentElement.style.display = "block";
+    nameInput.parentElement.lastElementChild.style.display = "block";
   }
 }
 
@@ -115,11 +116,11 @@ function isValidEmail(email) {
   if (emailIsValid) {
     email.parentElement.classList.remove("not-valid");
     email.parentElement.classList.add("valid");
-    email.parentElement.style.display = "none";
+    email.parentElement.lastElementChild.style.display = "none";
   } else {
     email.parentElement.classList.remove("valid");
     email.parentElement.classList.add("not-valid");
-    email.parentElement.style.display = "block";
+    email.parentElement.lastElementChild.style.display = "block";
   }
 }
 
@@ -128,11 +129,11 @@ function isValidCreditCardNumber(cardNumber) {
   if (creditCardIsValid) {
     cardNumber.parentElement.classList.remove("not-valid");
     cardNumber.parentElement.classList.add("valid");
-    cardNumber.parentElement.style.display = "none";
+    cardNumber.parentElement.lastElementChild.style.display = "none";
   } else {
     cardNumber.parentElement.classList.remove("valid");
     cardNumber.parentElement.classList.add("not-valid");
-    cardNumber.parentElement.style.display = "block";
+    cardNumber.parentElement.lastElementChild.style.display = "block";
   }
 }
 
@@ -141,30 +142,57 @@ function isValidZip(zip) {
   if (zipIsValid) {
     zip.parentElement.classList.remove("not-valid");
     zip.parentElement.classList.add("valid");
-    zip.parentElement.style.display = "none";
+    zip.parentElement.lastElementChild.style.display = "none";
   } else {
     zip.parentElement.classList.remove("valid");
     zip.parentElement.classList.add("not-valid");
-    zip.parentElement.style.display = "block";
+    zip.parentElement.lastElementChild.style.display = "block";
   }
 }
+
+function isValidActivity(activitiesBox) {
+  const activitiesBoxIsValid = totalCostOfActivities > 0;
+  if (activitiesBoxIsValid) {
+    activitiesBox.parentElement.classList.remove("not-valid");
+    activitiesBox.parentElement.classList.add("valid");
+    activitiesBox.parentElement.lastElementChild.style.display = "none";
+  } else {
+    activitiesBox.parentElement.classList.remove("valid");
+    activitiesBox.parentElement.classList.add("not-valid");
+    activitiesBox.parentElement.lastElementChild.style.display = "block";
+  }
+}
+
 function isValidCvv(cvv) {
   const cvvIsValid = /^\d{3}$/.test(cvv);
   if (cvvIsValid) {
     cvv.parentElement.classList.remove("not-valid");
     cvv.parentElement.classList.add("valid");
-    cvv.parentElement.style.display = "none";
+    cvv.parentElement.lastElementChild.style.display = "none";
   } else {
     cvv.parentElement.classList.remove("valid");
     cvv.parentElement.classList.add("not-valid");
-    cvv.parentElement.style.display = "block";
+    cvv.parentElement.lastElementChild.style.display = "block";
   }
 }
 
+//focuses and blurs activities section for improved accessibility
+let checkboxes = document.querySelectorAll("input[type = checkbox]");
+
+for (let i = 0; i < checkboxes.length; i++) {
+  checkboxes[i].addEventListener("focus", (e) => {
+    checkboxes[i].parentElement.classList.add("focus");
+  });
+  checkboxes[i].addEventListener("blur", (e) => {
+    checkboxes[i].parentElement.classList.remove("focus");
+  });
+}
+//checks all form fields are valid so form can be submitted
 form.addEventListener("submit", (e) => {
   if ((allValid = true)) {
     allValid += isValidName();
     allValid += isValidEmail();
+    allValid += isValidActivity();
     allValid += isValidCreditCardNumber();
     allValid += isValidZip();
     allValid += isValidCvv();
