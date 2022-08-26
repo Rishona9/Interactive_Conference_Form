@@ -18,29 +18,28 @@ title.addEventListener("change", (e) => {
   }
 });
 //disables shirt colors until design is selected
-document.getElementById("color").disabled = true;
 
 //color dropdown menu displays only the color options associated with the selected design
-const color = document.getElementById("color");
 const design = document.getElementById("design");
+const color = document.getElementById("color");
+const colorOption = color.children;
 
+//disable color field
+color.disabled = true;
+
+//create an eventListener for shirt design
 design.addEventListener("change", (e) => {
   color.disabled = false;
-  shirtDesign = e.target.value;
-  if (shirtDesign === "js puns") {
-    color[1].hidden = false;
-    color[2].hidden = false;
-    color[3].hidden = false;
-    color[4].hidden = true;
-    color[5].hidden = true;
-    color[6].hidden = true;
-  } else {
-    color[1].hidden = true;
-    color[2].hidden = true;
-    color[3].hidden = true;
-    color[4].hidden = false;
-    color[5].hidden = false;
-    color[6].hidden = false;
+  for (let i = 0; i < colorOption.length; i++) {
+    const selected = e.target.value;
+    let dataTheme = colorOption[i].getAttribute("data-theme");
+    if (dataTheme === selected) {
+      colorOption[i].hidden = false;
+      selected.hidden = true;
+    } else {
+      colorOption[i].hidden = true;
+      selected.hidden = false;
+    }
   }
 });
 
