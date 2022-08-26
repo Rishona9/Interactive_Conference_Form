@@ -97,16 +97,18 @@ const zip = document.getElementById("zip");
 const cvv = document.getElementById("cvv");
 const activitiesBox = document.getElementById("activities-box");
 
-function isValidName(nameInput) {
-  const nameIsValid = /^[a-z]+$/.test(nameInput);
+function isValidName(nameValue) {
+  const nameIsValid = /^[a-z]+$/.test(nameValue);
   if (nameIsValid) {
-    nameInput.parentElement.classList.remove("not-valid");
-    nameInput.parentElement.classList.add("valid");
-    nameInput.parentElement.lastElementChild.style.display = "none";
+    nameValue.parentElement.classList.remove("not-valid");
+    nameValue.parentElement.classList.add("valid");
+    nameValue.parentElement.lastElementChild.style.display = "none";
+    return true;
   } else {
-    nameInput.parentElement.classList.remove("valid");
-    nameInput.parentElement.classList.add("not-valid");
-    nameInput.parentElement.lastElementChild.style.display = "block";
+    nameValue.parentElement.classList.remove("valid");
+    nameValue.parentElement.classList.add("not-valid");
+    nameValue.parentElement.lastElementChild.style.display = "block";
+    return false;
   }
 }
 
@@ -188,14 +190,9 @@ for (let i = 0; i < checkboxes.length; i++) {
 }
 //checks all form fields are valid so form can be submitted
 form.addEventListener("submit", (e) => {
-  if ((allValid = true)) {
-    allValid += isValidName();
-    allValid += isValidEmail();
-    allValid += isValidActivity();
-    allValid += isValidCreditCardNumber();
-    allValid += isValidZip();
-    allValid += isValidCvv();
-  } else {
-    e.preventDefault();
+  const userName = nameInput.value;
+  const isNameValid = isValidName(userName);
+  if (!isNameValid) {
+    e.prevent.default;
   }
 });
