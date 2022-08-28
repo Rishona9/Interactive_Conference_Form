@@ -95,6 +95,8 @@ const bitCoinBox = document.getElementById("bitcoin");
 
 //sets default payment type on load
 creditCard.selected = true;
+payPalBox.style.display = "none";
+bitCoinBox.style.display = "none";
 
 payment.addEventListener("change", (e) => {
   const paymentType = e.target.value;
