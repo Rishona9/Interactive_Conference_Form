@@ -185,7 +185,7 @@ function isValidZip(zipValue) {
 }
 
 function isValidActivity(activityValue) {
-  const activitiesBoxIsValid = selectedActivities.length > 0(activityValue);
+  const activitiesBoxIsValid = selectedActivities.checked(activityValue);
   if (activitiesBoxIsValid) {
     selectedActivities.parentElement.classList.remove("not-valid");
     selectedActivities.parentElement.classList.add("valid");
@@ -239,7 +239,7 @@ form.addEventListener("submit", (e) => {
   const isZipValid = isValidZip(userZip);
   const userCvv = cvv.value;
   const isCvvValid = isValidCvv(userCvv);
-  const userActivity = selectedActivities.value;
+  const userActivity = selectedActivities.checked;
   const isActivityValid = isValidActivity(userActivity);
 
   if (!isNameValid) {
