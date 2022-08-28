@@ -120,7 +120,9 @@ const email = document.getElementById("email");
 const cardNumber = document.getElementById("cc-num");
 const zip = document.getElementById("zip");
 const cvv = document.getElementById("cvv");
-const activityTotalCost = document.getElementById("activities-cost");
+const selectedActivities = document.querySelectorAll(
+  '[type="checkbox"]:checked'
+);
 
 function isValidName(nameValue) {
   const nameIsValid = /^[a-z]+[\s]?[a-z]+?$/i.test(nameValue);
@@ -182,17 +184,17 @@ function isValidZip(zipValue) {
   }
 }
 
-function isValidActivity(activityTotal) {
-  const activitiesBoxIsValid = activityTotal > 0;
+function isValidActivity(activityValue) {
+  const activitiesBoxIsValid = selectedActivities.length > 0(activityValue);
   if (activitiesBoxIsValid) {
-    activityTotalCost.parentElement.classList.remove("not-valid");
-    activityTotalCost.parentElement.classList.add("valid");
-    activityTotalCost.parentElement.lastElementChild.style.display = "none";
+    selectedActivities.parentElement.classList.remove("not-valid");
+    selectedActivities.parentElement.classList.add("valid");
+    selectedActivities.parentElement.lastElementChild.style.display = "none";
     return true;
   } else {
-    activityTotalCost.parentElement.classList.remove("valid");
-    activityTotalCost.parentElement.classList.add("not-valid");
-    activityTotalCost.parentElement.lastElementChild.style.display = "block";
+    selectedActivities.parentElement.classList.remove("valid");
+    selectedActivities.parentElement.classList.add("not-valid");
+    selectedActivities.parentElement.lastElementChild.style.display = "block";
     return false;
   }
 }
@@ -237,7 +239,7 @@ form.addEventListener("submit", (e) => {
   const isZipValid = isValidZip(userZip);
   const userCvv = cvv.value;
   const isCvvValid = isValidCvv(userCvv);
-  const userActivity = activityTotalCost.value;
+  const userActivity = selectedActivities.value;
   const isActivityValid = isValidActivity(userActivity);
 
   if (!isNameValid) {
