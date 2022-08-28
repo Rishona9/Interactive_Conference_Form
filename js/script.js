@@ -229,7 +229,6 @@ for (let i = 0; i < checkboxes.length; i++) {
 
 //checks all form fields are valid so form can be submitted
 form.addEventListener("submit", (e) => {
-  e.preventDefault();
   const userName = nameInput.value;
   const isNameValid = isValidName(userName);
   const userEmail = email.value;
