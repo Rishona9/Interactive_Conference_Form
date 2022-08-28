@@ -123,6 +123,7 @@ const cardNumber = document.getElementById("cc-num");
 const zip = document.getElementById("zip");
 const cvv = document.getElementById("cvv");
 const activitiesBox = document.getElementById("activities-box");
+const selectedActivities = document.querySelector("input[type=checkbox]");
 
 function isValidName(nameValue) {
   const nameIsValid = /^[a-z]+[\s]?[a-z]+?$/i.test(nameValue);
@@ -185,7 +186,7 @@ function isValidZip(zipValue) {
 }
 
 function isValidActivity() {
-  const activitiesBoxIsValid = activitiesBox.length > 0;
+  const activitiesBoxIsValid = totalCost > 0;
   if (activitiesBoxIsValid) {
     activitiesBox.parentElement.classList.remove("not-valid");
     activitiesBox.parentElement.classList.add("valid");
