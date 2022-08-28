@@ -239,7 +239,7 @@ form.addEventListener("submit", (e) => {
   const isZipValid = isValidZip(userZip);
   const userCvv = cvv.value;
   const isCvvValid = isValidCvv(userCvv);
-  const userActivity = selectedActivities.length;
+  const userActivity = selectedActivities.value;
   const isActivityValid = isValidActivity(userActivity);
 
   if (!isNameValid) {
