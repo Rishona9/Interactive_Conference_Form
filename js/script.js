@@ -185,7 +185,7 @@ function isValidZip(zipValue) {
 }
 
 function isValidActivity() {
-  const activitiesBoxIsValid = selectedActivities.length > 0;
+  const activitiesBoxIsValid = activitiesBox.length > 0;
   if (activitiesBoxIsValid) {
     activitiesBox.parentElement.classList.remove("not-valid");
     activitiesBox.parentElement.classList.add("valid");
