@@ -120,7 +120,7 @@ const email = document.getElementById("email");
 const cardNumber = document.getElementById("cc-num");
 const zip = document.getElementById("zip");
 const cvv = document.getElementById("cvv");
-const activitiesBox = document.getElementById("activities-box");
+const activityTotalCost = document.getElementById("activities-cost");
 
 function isValidName(nameValue) {
   const nameIsValid = /^[a-z]+[\s]?[a-z]+?$/i.test(nameValue);
@@ -137,68 +137,78 @@ function isValidName(nameValue) {
   }
 }
 
-function isValidEmail(email) {
-  const emailIsValid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(email);
+function isValidEmail(emailValue) {
+  const emailIsValid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(emailValue);
   if (emailIsValid) {
     email.parentElement.classList.remove("not-valid");
     email.parentElement.classList.add("valid");
     email.parentElement.lastElementChild.style.display = "none";
+    return true;
   } else {
     email.parentElement.classList.remove("valid");
     email.parentElement.classList.add("not-valid");
     email.parentElement.lastElementChild.style.display = "block";
+    return false;
   }
 }
 
-function isValidCreditCardNumber(cardNumber) {
-  const creditCardIsValid = /^\d{13, 16}$/.test(cardNumber);
+function isValidCreditCardNumber(cardNumberValue) {
+  const creditCardIsValid = /^\d{13,16}/.test(cardNumberValue);
   if (creditCardIsValid) {
     cardNumber.parentElement.classList.remove("not-valid");
     cardNumber.parentElement.classList.add("valid");
     cardNumber.parentElement.lastElementChild.style.display = "none";
+    return true;
   } else {
     cardNumber.parentElement.classList.remove("valid");
     cardNumber.parentElement.classList.add("not-valid");
     cardNumber.parentElement.lastElementChild.style.display = "block";
+    return false;
   }
 }
 
-function isValidZip(zip) {
-  const zipIsValid = /^\d{5}$/.test(zipCode);
+function isValidZip(zipValue) {
+  const zipIsValid = /^\d{5}$/.test(zipValue);
   if (zipIsValid) {
     zip.parentElement.classList.remove("not-valid");
     zip.parentElement.classList.add("valid");
     zip.parentElement.lastElementChild.style.display = "none";
+    return true;
   } else {
     zip.parentElement.classList.remove("valid");
     zip.parentElement.classList.add("not-valid");
     zip.parentElement.lastElementChild.style.display = "block";
+    return false;
   }
 }
 
-function isValidActivity(activitiesBox) {
-  const activitiesBoxIsValid = totalCostOfActivities > 0;
+function isValidActivity(activityTotal) {
+  const activitiesBoxIsValid = activityTotal > 0;
   if (activitiesBoxIsValid) {
-    activitiesBox.parentElement.classList.remove("not-valid");
-    activitiesBox.parentElement.classList.add("valid");
-    activitiesBox.parentElement.lastElementChild.style.display = "none";
+    activityTotalCost.parentElement.classList.remove("not-valid");
+    activityTotalCost.parentElement.classList.add("valid");
+    activityTotalCost.parentElement.lastElementChild.style.display = "none";
+    return true;
   } else {
-    activitiesBox.parentElement.classList.remove("valid");
-    activitiesBox.parentElement.classList.add("not-valid");
-    activitiesBox.parentElement.lastElementChild.style.display = "block";
+    activityTotalCost.parentElement.classList.remove("valid");
+    activityTotalCost.parentElement.classList.add("not-valid");
+    activityTotalCost.parentElement.lastElementChild.style.display = "block";
+    return false;
   }
 }
 
-function isValidCvv(cvv) {
-  const cvvIsValid = /^\d{3}$/.test(cvv);
+function isValidCvv(cvvValue) {
+  const cvvIsValid = /^\d{3}$/.test(cvvValue);
   if (cvvIsValid) {
     cvv.parentElement.classList.remove("not-valid");
     cvv.parentElement.classList.add("valid");
     cvv.parentElement.lastElementChild.style.display = "none";
+    return true;
   } else {
     cvv.parentElement.classList.remove("valid");
     cvv.parentElement.classList.add("not-valid");
     cvv.parentElement.lastElementChild.style.display = "block";
+    return false;
   }
 }
 
@@ -217,16 +227,35 @@ for (let i = 0; i < checkboxes.length; i++) {
 //checks all form fields are valid so form can be submitted
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-
   const userName = nameInput.value;
-
   const isNameValid = isValidName(userName);
-
-  if (totalCost === 0) {
-    // add not valid classes
-  }
+  const userEmail = email.value;
+  const isEmailValid = isValidEmail(userEmail);
+  const ccNumber = cardNumber.value;
+  const isCreditCardNumberValid = isValidCreditCardNumber(ccNumber);
+  const userZip = zip.value;
+  const isZipValid = isValidZip(userZip);
+  const userCvv = cvv.value;
+  const isCvvValid = isValidCvv(userCvv);
+  const userActivity = activityTotalCost.value;
+  const isActivityValid = isValidActivity(userActivity);
 
   if (!isNameValid) {
-    console.log("the name was invalid!!!");
+    e.preventDefault();
+  }
+  if (!isEmailValid) {
+    e.preventDefault();
+  }
+  if (!isActivityValid) {
+    e.preventDefault();
+  }
+  if (!isCreditCardNumberValid) {
+    e.preventDefault();
+  }
+  if (!isZipValid) {
+    e.preventDefault();
+  }
+  if (!isCvvValid) {
+    e.preventDefault();
   }
 });
