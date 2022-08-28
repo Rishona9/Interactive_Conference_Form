@@ -122,9 +122,7 @@ const email = document.getElementById("email");
 const cardNumber = document.getElementById("cc-num");
 const zip = document.getElementById("zip");
 const cvv = document.getElementById("cvv");
-const selectedActivities = document.querySelectorAll(
-  '[type="checkbox"]:checked'
-);
+const activitiesBox = document.getElementById("activities-box");
 
 function isValidName(nameValue) {
   const nameIsValid = /^[a-z]+[\s]?[a-z]+?$/i.test(nameValue);
@@ -186,17 +184,17 @@ function isValidZip(zipValue) {
   }
 }
 
-function isValidActivity(activityValue) {
-  const activitiesBoxIsValid = selectedActivities.length > 0(activityValue);
+function isValidActivity() {
+  const activitiesBoxIsValid = selectedActivities.length > 0;
   if (activitiesBoxIsValid) {
-    selectedActivities.parentElement.classList.remove("not-valid");
-    selectedActivities.parentElement.classList.add("valid");
-    selectedActivities.parentElement.lastElementChild.style.display = "none";
+    activitiesBox.parentElement.classList.remove("not-valid");
+    activitiesBox.parentElement.classList.add("valid");
+    activitiesBox.parentElement.lastElementChild.style.display = "none";
     return true;
   } else {
-    selectedActivities.parentElement.classList.remove("valid");
-    selectedActivities.parentElement.classList.add("not-valid");
-    selectedActivities.parentElement.lastElementChild.style.display = "block";
+    activitiesBox.parentElement.classList.remove("valid");
+    activitiesBox.parentElement.classList.add("not-valid");
+    activitiesBox.parentElement.lastElementChild.style.display = "block";
     return false;
   }
 }
