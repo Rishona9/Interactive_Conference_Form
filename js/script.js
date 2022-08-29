@@ -251,13 +251,15 @@ form.addEventListener("submit", (e) => {
   if (!isActivityValid) {
     e.preventDefault();
   }
-  if (!isCreditCardNumberValid) {
-    e.preventDefault();
-  }
-  if (!isZipValid) {
-    e.preventDefault();
-  }
-  if (!isCvvValid) {
-    e.preventDefault();
+  if (payment.value === "credit-card") {
+    if (!isCreditCardNumberValid) {
+      e.preventDefault();
+    }
+    if (!isZipValid) {
+      e.preventDefault();
+    }
+    if (!isCvvValid) {
+      e.preventDefault();
+    }
   }
 });
